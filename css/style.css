@@ -1,0 +1,48 @@
+#progressbar {
+  background-color: rgb(185, 234, 245);
+  height: 5px;
+  width: 0%;
+  float: left;
+}
+#back-bar {
+  background-color: rgb(196, 194, 214);
+  height: 5px;
+  width:100%;
+  float: right;
+}
+#slider {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.video_wrapper {
+  width: 300px;
+}
+#video {
+  width: 100%;
+  height: 100%;
+  border: 2px rgb(62, 72, 78) solid ;
+  border-radius: 3px;
+}
+#progressbar_wrapper {
+}
+#playbtn {
+  margin-left: 10%;
+}
+#playbtn, #stopbtn, #moreplaybtn, #backbtn {
+  border-radius: 25px;
+  border-style: none;
+  background-color: #000000;
+  border: 3px #000000 solid;
+}
+button :hover {
+  opacity: 0.5;
+}
+.fa-play, .fa-stop, .fa-backward, .fa-forward {
+  color: #ffffff;
+  font-size: 15px;
+}
+#nowplaytime {
+  margin-left: 10px;
+}

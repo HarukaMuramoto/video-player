@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="discription" content="">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="video_wrapper">
+    <video id="video" src="my_video1.mp4"></video>
+    <div id="progressbar_wrapper">
+      <div id="progressbar"></div>
+      <div id="back-bar"></div>
+
+    <input type="range" id="slider" value="0">
+  <br />
+    <button id="playbtn"><i class="fa fa-play" aria-hidden="true"></i></button>
+    <button id="stopbtn"><i class="fa fa-stop" aria-hidden="true"></i></button>
+    <button id="backbtn"><i class="fa fa-backward" aria-hidden="true"></i></button>
+    <button id="moreplaybtn"><i class="fa fa-forward" aria-hidden="true"></i></button>
+    <span id="nowplaytime">0</span>sec/<span id="wholetime">--</span>sec
+
+  </div>
+  <!-- <div id="drop" class="droparea"></div>
+  </div> -->
+  <!-- <button id="pausebtn">pause</button> -->
+  <script>
+    var video = document.getElementById("video");
+    var playbtn = document.getElementById("playbtn");
+    var progressbar = document.getElementById("progressbar");
+    var slider = document.getElementById("slider");
+    var nowplaytime = document.getElementById("nowplaytime");
+    var wholetime = document.getElementById("wholetime");
+    var moreplaybtn = document.getElementById("moreplaybtn");
+    var stopbtn = document.getElementById("stopbtn");
+    var backbtn = document.getElementById("backbtn");
+    var backbar = document.getElementById("back-bar");
+    /*var pausebtn = document.getElementById("pausebtn");*/
+
+    video.addEventListener("click", function() {
+
+      if(video.paused) {
+        video.play()
+      }else {
+        video.pause()
+      }
+    })
+
+    playbtn.addEventListener("click", function() {
+      if(video.paused){
+        video.play();
+      }
+      else {
+        video.playbackRate = 1;
+      }
+    })
+    stopbtn.addEventListener("click", function() {
+      if(video.playbackRate==1) {
+        video.pause();
+      }
+      else {
+        video.playbackRate = 1;
+        video.pause();
+      }
+
+    })
+    backbtn.addEventListener("click", function() {
+      video.playbackRate = -2;
+    })
+    moreplaybtn.addEventListener("click", function(){
+      video.playbackRate = 2;
+    })
+
+
+
+    video.addEventListener("loadeddata", function() {
+      wholetime.innerHTML =video.duration.toFixed(0);
+    })
+
+    video.addEventListener("canplay", function () {
+      console.log(video.duration)
+    })
+
+    video.addEventListener("timeupdate", function() {
+      var par = (video.currentTime/video.duration)*100;
+      progressbar.style.width = par+ "%";
+      backbar.style.width= (100-par) + "%";
+      slider.value= par;
+
+      nowplaytime.innerHTML = video.currentTime.toFixed(0);
+    })
+
+    slider.addEventListener("input", function () {
+      console.log(video.volume)
+      video.currentTime = slider.value /100 * video.duration
+    })
+
+    video.addEventListener("cilck", function () {
+      if(video.paused) {
+        video.play()
+      }else {
+        video.pause()
+      }
+    })
+    video.addEventListener("ended", function() {
+      video.currentTime = 0;
+    })
+
+
+  </script>
+
+</body>
+</html>
